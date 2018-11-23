@@ -1,0 +1,13 @@
+.\objects\heap_1.o: Freertos\src\heap_1.c
+.\objects\heap_1.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\heap_1.o: .\Freertos\inc\FreeRTOS.h
+.\objects\heap_1.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\heap_1.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\heap_1.o: .\Code\inc\FreeRTOSConfig.h
+.\objects\heap_1.o: .\Freertos\inc\projdefs.h
+.\objects\heap_1.o: .\Freertos\inc\portable.h
+.\objects\heap_1.o: .\Freertos\inc\deprecated_definitions.h
+.\objects\heap_1.o: .\Freertos\inc\portmacro.h
+.\objects\heap_1.o: .\Freertos\inc\mpu_wrappers.h
+.\objects\heap_1.o: .\Freertos\inc\task.h
+.\objects\heap_1.o: .\Freertos\inc\list.h

@@ -1,0 +1,139 @@
+Dependencies for Project 'gatewayKamaz', Target 'main': (DO NOT MODIFY !)
+F (.\CMSIS\src\core_cm3.c)(0x4C0CACDE)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\core_cm3.o --omf_browse .\objects\core_cm3.crf --depend .\objects\core_cm3.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+F (.\CMSIS\src\system_stm32f10x.c)(0x4D788300)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\system_stm32f10x.o --omf_browse .\objects\system_stm32f10x.crf --depend .\objects\system_stm32f10x.d)
+I (.\CMSIS\inc\stm32f10x.h)(0x5BF78275)
+I (.\CMSIS\inc\core_cm3.h)(0x4D5281A8)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\CMSIS\inc\system_stm32f10x.h)(0x4D7882FA)
+F (.\Startup\startup_stm32f10x_md.s)(0x4D788322)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 525" --pd "STM32F10X_HD SETA 1"--list .\listings\startup_stm32f10x_md.lst --xref -o .\objects\startup_stm32f10x_md.o --depend .\objects\startup_stm32f10x_md.d)
+F (.\Freertos\src\croutine.c)(0x5B92F2CA)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\croutine.o --omf_browse .\objects\croutine.crf --depend .\objects\croutine.d)
+I (.\Freertos\inc\FreeRTOS.h)(0x5B92F2C8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\Code\inc\FreeRTOSConfig.h)(0x5B92F2C8)
+I (.\Freertos\inc\projdefs.h)(0x5B92F2C8)
+I (.\Freertos\inc\portable.h)(0x5B92F2C8)
+I (.\Freertos\inc\deprecated_definitions.h)(0x5B92F2C8)
+I (.\Freertos\inc\portmacro.h)(0x5B92F2C9)
+I (.\Freertos\inc\mpu_wrappers.h)(0x5B92F2C8)
+I (.\Freertos\inc\task.h)(0x5B92F9BF)
+I (.\Freertos\inc\list.h)(0x5B92F2C8)
+I (.\Freertos\inc\croutine.h)(0x5B92F2C8)
+F (.\Freertos\src\event_groups.c)(0x5B92F2CA)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\event_groups.o --omf_browse .\objects\event_groups.crf --depend .\objects\event_groups.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599F137C)
+I (.\Freertos\inc\FreeRTOS.h)(0x5B92F2C8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\Code\inc\FreeRTOSConfig.h)(0x5B92F2C8)
+I (.\Freertos\inc\projdefs.h)(0x5B92F2C8)
+I (.\Freertos\inc\portable.h)(0x5B92F2C8)
+I (.\Freertos\inc\deprecated_definitions.h)(0x5B92F2C8)
+I (.\Freertos\inc\portmacro.h)(0x5B92F2C9)
+I (.\Freertos\inc\mpu_wrappers.h)(0x5B92F2C8)
+I (.\Freertos\inc\task.h)(0x5B92F9BF)
+I (.\Freertos\inc\list.h)(0x5B92F2C8)
+I (.\Freertos\inc\timers.h)(0x5B92F2C9)
+I (.\Freertos\inc\event_groups.h)(0x5B92F2C8)
+F (.\Freertos\src\heap_1.c)(0x5B92F2CA)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\heap_1.o --omf_browse .\objects\heap_1.crf --depend .\objects\heap_1.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599F137C)
+I (.\Freertos\inc\FreeRTOS.h)(0x5B92F2C8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\Code\inc\FreeRTOSConfig.h)(0x5B92F2C8)
+I (.\Freertos\inc\projdefs.h)(0x5B92F2C8)
+I (.\Freertos\inc\portable.h)(0x5B92F2C8)
+I (.\Freertos\inc\deprecated_definitions.h)(0x5B92F2C8)
+I (.\Freertos\inc\portmacro.h)(0x5B92F2C9)
+I (.\Freertos\inc\mpu_wrappers.h)(0x5B92F2C8)
+I (.\Freertos\inc\task.h)(0x5B92F9BF)
+I (.\Freertos\inc\list.h)(0x5B92F2C8)
+F (.\Freertos\src\list.c)(0x5B92F2CA)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\list.o --omf_browse .\objects\list.crf --depend .\objects\list.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599F137C)
+I (.\Freertos\inc\FreeRTOS.h)(0x5B92F2C8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\Code\inc\FreeRTOSConfig.h)(0x5B92F2C8)
+I (.\Freertos\inc\projdefs.h)(0x5B92F2C8)
+I (.\Freertos\inc\portable.h)(0x5B92F2C8)
+I (.\Freertos\inc\deprecated_definitions.h)(0x5B92F2C8)
+I (.\Freertos\inc\portmacro.h)(0x5B92F2C9)
+I (.\Freertos\inc\mpu_wrappers.h)(0x5B92F2C8)
+I (.\Freertos\inc\list.h)(0x5B92F2C8)
+F (.\Freertos\src\port.c)(0x5B92F2CA)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\port.o --omf_browse .\objects\port.crf --depend .\objects\port.d)
+I (.\Freertos\inc\FreeRTOS.h)(0x5B92F2C8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\Code\inc\FreeRTOSConfig.h)(0x5B92F2C8)
+I (.\Freertos\inc\projdefs.h)(0x5B92F2C8)
+I (.\Freertos\inc\portable.h)(0x5B92F2C8)
+I (.\Freertos\inc\deprecated_definitions.h)(0x5B92F2C8)
+I (.\Freertos\inc\portmacro.h)(0x5B92F2C9)
+I (.\Freertos\inc\mpu_wrappers.h)(0x5B92F2C8)
+I (.\Freertos\inc\task.h)(0x5B92F9BF)
+I (.\Freertos\inc\list.h)(0x5B92F2C8)
+F (.\Freertos\src\queue.c)(0x5B92F2CA)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\queue.o --omf_browse .\objects\queue.crf --depend .\objects\queue.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599F137C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F137C)
+I (.\Freertos\inc\FreeRTOS.h)(0x5B92F2C8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\Code\inc\FreeRTOSConfig.h)(0x5B92F2C8)
+I (.\Freertos\inc\projdefs.h)(0x5B92F2C8)
+I (.\Freertos\inc\portable.h)(0x5B92F2C8)
+I (.\Freertos\inc\deprecated_definitions.h)(0x5B92F2C8)
+I (.\Freertos\inc\portmacro.h)(0x5B92F2C9)
+I (.\Freertos\inc\mpu_wrappers.h)(0x5B92F2C8)
+I (.\Freertos\inc\task.h)(0x5B92F9BF)
+I (.\Freertos\inc\list.h)(0x5B92F2C8)
+I (.\Freertos\inc\queue.h)(0x5B92F2C8)
+F (.\Freertos\src\stream_buffer.c)(0x5B92F2CA)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\stream_buffer.o --omf_browse .\objects\stream_buffer.crf --depend .\objects\stream_buffer.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F137C)
+I (.\Freertos\inc\FreeRTOS.h)(0x5B92F2C8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+I (.\Code\inc\FreeRTOSConfig.h)(0x5B92F2C8)
+I (.\Freertos\inc\projdefs.h)(0x5B92F2C8)
+I (.\Freertos\inc\portable.h)(0x5B92F2C8)
+I (.\Freertos\inc\deprecated_definitions.h)(0x5B92F2C8)
+I (.\Freertos\inc\portmacro.h)(0x5B92F2C9)
+I (.\Freertos\inc\mpu_wrappers.h)(0x5B92F2C8)
+I (.\Freertos\inc\task.h)(0x5B92F9BF)
+I (.\Freertos\inc\list.h)(0x5B92F2C8)
+I (.\Freertos\inc\stream_buffer.h)(0x5B92F2C8)
+F (.\Freertos\src\tasks.c)(0x5B92F2CA)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\tasks.o --omf_browse .\objects\tasks.crf --depend .\objects\tasks.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599F137C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F137C)
+I (.\Freertos\inc\FreeRTOS.h)(0x5B92F2C8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\Code\inc\FreeRTOSConfig.h)(0x5B92F2C8)
+I (.\Freertos\inc\projdefs.h)(0x5B92F2C8)
+I (.\Freertos\inc\portable.h)(0x5B92F2C8)
+I (.\Freertos\inc\deprecated_definitions.h)(0x5B92F2C8)
+I (.\Freertos\inc\portmacro.h)(0x5B92F2C9)
+I (.\Freertos\inc\mpu_wrappers.h)(0x5B92F2C8)
+I (.\Freertos\inc\task.h)(0x5B92F9BF)
+I (.\Freertos\inc\list.h)(0x5B92F2C8)
+I (.\Freertos\inc\timers.h)(0x5B92F2C9)
+I (.\Freertos\inc\stack_macros.h)(0x5B92F2C8)
+F (.\Freertos\src\timers.c)(0x5B92F2CA)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\timers.o --omf_browse .\objects\timers.crf --depend .\objects\timers.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599F137C)
+I (.\Freertos\inc\FreeRTOS.h)(0x5B92F2C8)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F137C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\Code\inc\FreeRTOSConfig.h)(0x5B92F2C8)
+I (.\Freertos\inc\projdefs.h)(0x5B92F2C8)
+I (.\Freertos\inc\portable.h)(0x5B92F2C8)
+I (.\Freertos\inc\deprecated_definitions.h)(0x5B92F2C8)
+I (.\Freertos\inc\portmacro.h)(0x5B92F2C9)
+I (.\Freertos\inc\mpu_wrappers.h)(0x5B92F2C8)
+I (.\Freertos\inc\task.h)(0x5B92F9BF)
+I (.\Freertos\inc\list.h)(0x5B92F2C8)
+I (.\Freertos\inc\queue.h)(0x5B92F2C8)
+I (.\Freertos\inc\timers.h)(0x5B92F2C9)
+F (.\Code\src\main.c)(0x5BF77EB0)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (.\CMSIS\inc\stm32f10x.h)(0x5BF78275)
+I (.\CMSIS\inc\core_cm3.h)(0x4D5281A8)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
+I (.\CMSIS\inc\system_stm32f10x.h)(0x4D7882FA)
