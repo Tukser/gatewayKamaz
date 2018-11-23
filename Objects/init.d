@@ -1,0 +1,16 @@
+.\objects\init.o: Code\src\init.c
+.\objects\init.o: .\Code\inc\init.h
+.\objects\init.o: .\CMSIS\inc\stm32f10x.h
+.\objects\init.o: .\CMSIS\inc\core_cm3.h
+.\objects\init.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\init.o: .\CMSIS\inc\system_stm32f10x.h
+.\objects\init.o: .\Freertos\inc\FreeRTOS.h
+.\objects\init.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\init.o: .\Code\inc\FreeRTOSConfig.h
+.\objects\init.o: .\Freertos\inc\projdefs.h
+.\objects\init.o: .\Freertos\inc\portable.h
+.\objects\init.o: .\Freertos\inc\deprecated_definitions.h
+.\objects\init.o: .\Freertos\inc\portmacro.h
+.\objects\init.o: .\Freertos\inc\mpu_wrappers.h
+.\objects\init.o: .\Freertos\inc\task.h
+.\objects\init.o: .\Freertos\inc\list.h

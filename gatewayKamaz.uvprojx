@@ -52,7 +52,7 @@
           <OutputName>gatewayKamaz</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\gatewayKamaz;.\CMSIS\inc;.\Freertos\inc;.\Code\inc</IncludePath>
+              <IncludePath>..\gatewayKamaz;.\CMSIS\inc;.\Freertos\inc;.\Code\inc;.\STM32F10xFWLib\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -460,6 +460,36 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Code\src\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Code\src\init.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>inc</GroupName>
+          <Files>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Code\inc\FreeRTOSConfig.h</FilePath>
+            </File>
+            <File>
+              <FileName>init.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Code\inc\init.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Code\inc\main.h</FilePath>
+            </File>
+            <File>
+              <FileName>mcp2115.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Code\inc\mcp2115.h</FilePath>
             </File>
           </Files>
         </Group>
