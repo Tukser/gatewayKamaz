@@ -4,6 +4,8 @@
 .\objects\init.o: .\CMSIS\inc\core_cm3.h
 .\objects\init.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\init.o: .\CMSIS\inc\system_stm32f10x.h
+.\objects\init.o: .\STM32F10x_StdPeriph_Driver\inc\stm32f10x_gpio.h
+.\objects\init.o: .\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rcc.h
 .\objects\init.o: .\Freertos\inc\FreeRTOS.h
 .\objects\init.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\init.o: .\Code\inc\FreeRTOSConfig.h
@@ -14,3 +16,4 @@
 .\objects\init.o: .\Freertos\inc\mpu_wrappers.h
 .\objects\init.o: .\Freertos\inc\task.h
 .\objects\init.o: .\Freertos\inc\list.h
+.\objects\init.o: .\STM32F10x_StdPeriph_Driver\inc\stm32f10x_spi.h

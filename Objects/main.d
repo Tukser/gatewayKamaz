@@ -17,3 +17,6 @@
 .\objects\main.o: .\Freertos\inc\list.h
 .\objects\main.o: .\Freertos\inc\queue.h
 .\objects\main.o: .\Code\inc\init.h
+.\objects\main.o: .\STM32F10x_StdPeriph_Driver\inc\stm32f10x_gpio.h
+.\objects\main.o: .\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rcc.h
+.\objects\main.o: .\STM32F10x_StdPeriph_Driver\inc\stm32f10x_spi.h
