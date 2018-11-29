@@ -1,6 +1,6 @@
 #include "init.h"
 
-void initTask(void)
+void initialization(void* parameter)
 {
 	RCC_DeInit();
 	RCC_HSICmd(ENABLE);
@@ -8,13 +8,28 @@ void initTask(void)
 	RCC_PLLConfig(RCC_PLLSource_HSI_Div2,RCC_PLLMul_4);
 	RCC_PLLCmd(ENABLE);
 	
-	GPIO_InitTypeDef _GpioInitIndicator;
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+	
+	GPIO_InitTypeDef _GpioInitIndicator;
+	
 	_GpioInitIndicator.GPIO_Mode =GPIO_Mode_Out_PP;
 	_GpioInitIndicator.GPIO_Pin = GPIO_Pin_7;
 	_GpioInitIndicator.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_Init(GPIOC, &_GpioInitIndicator);
 	
-	//SPI 250kb/s
+	//SPI1 250kb/s
+	SPI_I2S_DeInit(SPI1);
+	
+	GPIO_InitTypeDef _GpioPinForSpi250;
+	_GpioPinForSpi250.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_15;
+	_GpioPinForSpi250.GPIO_Mode = GPIO_Mode_AF_PP;
+	_GpioPinForSpi250.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_Init(GPIOB, &_GpioPinForSpi250);
+	
+	
+	
 	SPI_InitTypeDef _GpioInitSPI250;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
 	_GpioInitSPI250.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;
@@ -26,9 +41,12 @@ void initTask(void)
 	_GpioInitSPI250.SPI_FirstBit = SPI_FirstBit_MSB;
 	_GpioInitSPI250.SPI_Mode = SPI_Mode_Master;
 	_GpioInitSPI250.SPI_NSS = SPI_NSS_Soft;
+	SPI_Init(SPI1, &_GpioInitSPI250);
+	SPI_Cmd(SPI1, ENABLE);
 	
-	//SPI 500kb/s
-	SPI_InitTypeDef _GpioInitSPI500;
+	//SPI2 500kb/s
+	SPI_I2S_DeInit(SPI2);
+	SPI_InitTypeDef _GpioInitSPI500;	
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
 	_GpioInitSPI500.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;
 	_GpioInitSPI500.SPI_CPHA = SPI_CPHA_1Edge;
@@ -39,19 +57,46 @@ void initTask(void)
 	_GpioInitSPI500.SPI_FirstBit = SPI_FirstBit_MSB;
 	_GpioInitSPI500.SPI_Mode = SPI_Mode_Master;
 	_GpioInitSPI500.SPI_NSS = SPI_NSS_Soft;
+	SPI_Init(SPI1, &_GpioInitSPI500);
+	SPI_Cmd(SPI2, ENABLE);
+	
+	//USART
+	NVIC_InitTypeDef _NVICStruct;
+	_NVICStruct.NVIC_IRQChannel = USART1_IRQn;
+	_NVICStruct.NVIC_IRQChannelPreemptionPriority = 0;
+	_NVICStruct.NVIC_IRQChannelSubPriority = 0;
+	_NVICStruct.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&_NVICStruct);
+	
+	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+	GPIO_InitTypeDef _GpioPinForUSART;
+	USART_InitTypeDef _GpioInitUSART;
+	//TX
+	_GpioPinForUSART.GPIO_Pin = GPIO_Pin_9;
+	_GpioPinForUSART.GPIO_Mode = GPIO_Mode_AF_PP;
+	_GpioPinForUSART.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &_GpioPinForUSART);
+	//RX
+	_GpioPinForUSART.GPIO_Pin = GPIO_Pin_10;
+	_GpioPinForUSART.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+	GPIO_Init(GPIOA, &_GpioPinForUSART);
+	
+	_GpioInitUSART.USART_BaudRate = UBAUDRATE;
+	_GpioInitUSART.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	_GpioInitUSART.USART_Mode = USART_Mode_Tx |  USART_Mode_Rx;
+	_GpioInitUSART.USART_Parity = USART_Parity_No;
+	_GpioInitUSART.USART_StopBits = USART_StopBits_2;
+	_GpioInitUSART.USART_WordLength = USART_WordLength_8b;
+	USART_Init(USART1, &_GpioInitUSART);
+	
+	USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
+	USART_Cmd(USART1, ENABLE);
+	NVIC_EnableIRQ(USART1_IRQn);
+	
 	while(1)
 	{
 	}
 	vTaskDelete(NULL);
 }
 
-unsigned char sendMessageSPI250(unsigned char command, unsigned char data)
-{
-	
-	while(1)
-	{
-		
-	}
-	vTaskDelay(NULL);
-	
-}

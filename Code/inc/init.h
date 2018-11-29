@@ -7,6 +7,12 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "stm32f10x_spi.h"
+#include "stm32f10x_usart.h"
+
+//--------------------Address register for MCP2515 --------------------
+#define FOSC 8000000
+#define NTQm 8 
+#define BRP_VAL_CAN(BITRATE) ((FOCS/(2*NTQm*BITRATE))-1)
 
 #define RXF0SIDH 0x00
 #define RXF0SIDL 0x01
@@ -329,10 +335,16 @@
 
 #define CMD_BIT_MODIFY 0x05
 
+//----------------------------------------------------------------------------------------------------
 
+//define for STM32f103ret6
 
-void initTask(void);
-unsigned char sendMessageSPI250Task(unsigned char command, unsigned char data);
+//#define UBAUDRATE 4800
+#define UBAUDRATE 9600
+//#define UBAUDRATE 19200
+//#define UBAUDRATE 115200
+
+void initialization(void* parameter);
 
 
 #endif
