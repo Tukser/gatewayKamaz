@@ -6,6 +6,7 @@
 #include "stm32f10x_rcc.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "queue.h"
 #include "stm32f10x_spi.h"
 #include "stm32f10x_usart.h"
 
@@ -16,7 +17,11 @@
 unsigned char sendMessageSPI250(unsigned char command, unsigned char data);
 unsigned char sendMessageSPI500(unsigned char command, unsigned char data);
 
-void sendMessageUSART(void* buffer);
+void sendMessageUSART(unsigned char buffer);
+
+
 void USART1_IRQHandler();
+
+
 
 #endif

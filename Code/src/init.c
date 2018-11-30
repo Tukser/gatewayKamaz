@@ -1,6 +1,6 @@
 #include "init.h"
 
-void initialization(void* parameter)
+void initialization(void)
 {
 	RCC_DeInit();
 	RCC_HSICmd(ENABLE);
@@ -93,10 +93,5 @@ void initialization(void* parameter)
 	USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
 	USART_Cmd(USART1, ENABLE);
 	NVIC_EnableIRQ(USART1_IRQn);
-	
-	while(1)
-	{
-	}
-	vTaskDelete(NULL);
 }
 

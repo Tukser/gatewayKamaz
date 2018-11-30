@@ -1,19 +1,44 @@
 #include "main.h"
 
+xQueueHandle xSendUsart = NULL;
+
+void xTaskSendUsart(void* param);
+void xTaskSendQueue(void* param);
+
 int main()
 {
-	static unsigned char buffer=253;
-	xTaskCreate(initialization, "Initialization_device", configMINIMAL_STACK_SIZE , NULL, 1, NULL);
-	xTaskCreate(sendMessageUSART, "Send a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
-	
-	xSendDataUsart = xQueueCreate(5, sizeof(unsigned char));
-	
-	vTaskStartScheduler();
+//	xSendUsart = xQueueCreate(1, sizeof(unsigned char));
+	//xTaskCreate(initialization, "Initialization_device", configMINIMAL_STACK_SIZE , NULL, 1, NULL);
+	/*xTaskCreate(xTaskSendUsart, "Send a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+	vTaskStartScheduler();*/
+	initialization();
 	while (1)
 	{
+		//sendMessageUSART(5);
 	}
 	return 0;
 }
+
+/*void xTaskSendUsart(void* param)
+{
+	unsigned char data;
+	while (1)
+	{
+		xQueueReceive(xSendUsart,&data,0);
+		sendMessageUSART(data);
+		vTaskDelay(1000);
+	}
+}
+
+void xTaskSendQueue(void* param)
+{
+	unsigned char buffer=0xFF;
+	while(1)
+	{
+		xQueueSend(xSendUsart, &buffer, 0);
+		vTaskDelay(1000);
+	}
+}*/
 
 
 

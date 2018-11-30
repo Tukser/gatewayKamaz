@@ -39,3 +39,4 @@
 .\objects\communication.o: .\Freertos\inc\mpu_wrappers.h
 .\objects\communication.o: .\Freertos\inc\task.h
 .\objects\communication.o: .\Freertos\inc\list.h
+.\objects\communication.o: .\Freertos\inc\queue.h

@@ -12,6 +12,6 @@
 #include "init.h"
 #include "communication.h"
 
-	xQueueHandle xSendDataUsart;
+
 
 #endif

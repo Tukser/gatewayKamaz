@@ -31,6 +31,7 @@ unsigned char sendMessageSPI250(unsigned char command, unsigned char data)
 */
 void USART1_IRQHandler()
 {
+	unsigned char buffer = 0x32;
     if (USART_GetITStatus(USART1, USART_IT_TXE) != RESET)
     {
 			while (USART_GetFlagStatus(USART1, USART_FLAG_TXE)==RESET);
