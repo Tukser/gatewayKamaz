@@ -1,20 +1,30 @@
 #include "main.h"
 
 xQueueHandle xSendUsart = NULL;
+xQueueHandle xRecieveUsart;
+xQueueHandle sSendSPI250;
+xQueueHandle sRecieveSPI250;
+xQueueHandle sSendSPI500;
+xQueueHandle sRecieveSPI500;
 
-void xTaskSendUsart(void* param);
-void xTaskSendQueue(void* param);
 
 int main()
 {
-//	xSendUsart = xQueueCreate(1, sizeof(unsigned char));
-	//xTaskCreate(initialization, "Initialization_device", configMINIMAL_STACK_SIZE , NULL, 1, NULL);
-	/*xTaskCreate(xTaskSendUsart, "Send a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
-	vTaskStartScheduler();*/
-	initialization();
+
+	xTaskCreate(vTaskInitialization, "Initialization_device", configMINIMAL_STACK_SIZE , NULL, 1, NULL);
+	xTaskCreate(vTaskSendMessageUSART, "Send a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+
+	xSendUsart = xQueueCreate(1, sizeof(unsigned char)); //Queue for send data on USART
+	xRecieveUsart = xQueueCreate(1,sizeof(unsigned char)); //Queue for recieve data on USART
+	sSendSPI250 = xQueueCreate(1, sizeof(unsigned char)); //Queue for send data on SPI 250kb/s
+	sRecieveSPI250 = xQueueCreate(1, sizeof(unsigned char)); //Queue for recieve data on SPI 250kb/s
+
+	sSendSPI500 = xQueueCreate(1, sizeof(unsigned char)); //Queue for send data on SPI 250kb/s
+	sRecieveSPI500 = xQueueCreate(1, sizeof(unsigned char)); //Queue for recieve data on SPI 250kb/s
+
+	vTaskStartScheduler();
 	while (1)
 	{
-		//sendMessageUSART(5);
 	}
 	return 0;
 }

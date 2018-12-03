@@ -344,7 +344,7 @@
 //#define UBAUDRATE 19200
 //#define UBAUDRATE 115200
 
-void initialization(void);
+void vTaskInitialization(void* param);
 
 
 #endif

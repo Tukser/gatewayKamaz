@@ -1,6 +1,6 @@
 #include "init.h"
 
-void initialization(void)
+void vTaskInitialization(void* param)
 {
 	RCC_DeInit();
 	RCC_HSICmd(ENABLE);
@@ -19,18 +19,30 @@ void initialization(void)
 	_GpioInitIndicator.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_Init(GPIOC, &_GpioInitIndicator);
 	
+	//CS pin SPI
+	GPIO_InitTypeDef _GpioCS250;
+	GPIO_InitTypeDef _GpioCS500;
+	
+	_GpioCS250.GPIO_Pin = GPIO_Pin_12;
+	_GpioCS250.GPIO_Mode = GPIO_Mode_Out_PP;
+	_GpioCS250.GPIO_Speed = GPIO_Speed_2MHz;
+	
+	_GpioCS500.GPIO_Pin = GPIO_Pin_4;
+	_GpioCS500.GPIO_Mode = GPIO_Mode_Out_PP;
+	_GpioCS500.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_Init(GPIOB, &_GpioCS250);
+	GPIO_Init(GPIOA, &_GpioCS500);	
+	
 	//SPI1 250kb/s
 	SPI_I2S_DeInit(SPI1);
-	
+	SPI_InitTypeDef _GpioInitSPI250;
 	GPIO_InitTypeDef _GpioPinForSpi250;
+	
 	_GpioPinForSpi250.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_15;
 	_GpioPinForSpi250.GPIO_Mode = GPIO_Mode_AF_PP;
 	_GpioPinForSpi250.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_Init(GPIOB, &_GpioPinForSpi250);
 	
-	
-	
-	SPI_InitTypeDef _GpioInitSPI250;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
 	_GpioInitSPI250.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;
 	_GpioInitSPI250.SPI_CPHA = SPI_CPHA_1Edge;
@@ -47,6 +59,13 @@ void initialization(void)
 	//SPI2 500kb/s
 	SPI_I2S_DeInit(SPI2);
 	SPI_InitTypeDef _GpioInitSPI500;	
+	GPIO_InitTypeDef _GpioPinForSpi500;
+	
+	_GpioPinForSpi500.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
+	_GpioPinForSpi500.GPIO_Mode = GPIO_Mode_AF_PP;
+	_GpioPinForSpi500.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_Init(GPIOA, &_GpioPinForSpi500);
+	
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
 	_GpioInitSPI500.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;
 	_GpioInitSPI500.SPI_CPHA = SPI_CPHA_1Edge;
@@ -93,5 +112,10 @@ void initialization(void)
 	USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
 	USART_Cmd(USART1, ENABLE);
 	NVIC_EnableIRQ(USART1_IRQn);
+	while(1)
+	{
+		
+	}
+	vTaskDelete(NULL);
 }
 

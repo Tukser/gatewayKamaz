@@ -156,7 +156,7 @@ I (.\Freertos\inc\task.h)(0x5BF79F4E)
 I (.\Freertos\inc\list.h)(0x5BF79F4E)
 I (.\Freertos\inc\queue.h)(0x5BF79F4E)
 I (.\Freertos\inc\timers.h)(0x5BF79F4E)
-F (.\Code\src\main.c)(0x5C01432C)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc -I .\STM32F10xFWLib\inc -I .\STM32F10x_StdPeriph_Driver\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\Code\src\main.c)(0x5C0510E8)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc -I .\STM32F10xFWLib\inc -I .\STM32F10x_StdPeriph_Driver\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\Code\inc\main.h)(0x5C013D73)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F137C)
 I (.\CMSIS\inc\stm32f10x.h)(0x5BF79F4E)
@@ -198,10 +198,10 @@ I (.\Freertos\inc\mpu_wrappers.h)(0x5BF79F4E)
 I (.\Freertos\inc\task.h)(0x5BF79F4E)
 I (.\Freertos\inc\list.h)(0x5BF79F4E)
 I (.\Freertos\inc\queue.h)(0x5BF79F4E)
-I (.\Code\inc\init.h)(0x5C014326)
-I (.\Code\inc\communication.h)(0x5C013DCF)
-F (.\Code\src\init.c)(0x5C0143DA)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc -I .\STM32F10xFWLib\inc -I .\STM32F10x_StdPeriph_Driver\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\init.o --omf_browse .\objects\init.crf --depend .\objects\init.d)
-I (.\Code\inc\init.h)(0x5C014326)
+I (.\Code\inc\init.h)(0x5C0510C4)
+I (.\Code\inc\communication.h)(0x5C050D25)
+F (.\Code\src\init.c)(0x5C0504AE)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc -I .\STM32F10xFWLib\inc -I .\STM32F10x_StdPeriph_Driver\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\init.o --omf_browse .\objects\init.crf --depend .\objects\init.d)
+I (.\Code\inc\init.h)(0x5C0510C4)
 I (.\CMSIS\inc\stm32f10x.h)(0x5BF79F4E)
 I (.\CMSIS\inc\core_cm3.h)(0x5BF79F4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
@@ -240,8 +240,8 @@ I (.\Freertos\inc\portmacro.h)(0x5BF79F4E)
 I (.\Freertos\inc\mpu_wrappers.h)(0x5BF79F4E)
 I (.\Freertos\inc\task.h)(0x5BF79F4E)
 I (.\Freertos\inc\list.h)(0x5BF79F4E)
-F (.\Code\src\communication.c)(0x5C0144E9)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc -I .\STM32F10xFWLib\inc -I .\STM32F10x_StdPeriph_Driver\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\communication.o --omf_browse .\objects\communication.crf --depend .\objects\communication.d)
-I (.\Code\inc\communication.h)(0x5C013DCF)
+F (.\Code\src\communication.c)(0x5C051090)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc -I .\STM32F10xFWLib\inc -I .\STM32F10x_StdPeriph_Driver\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\communication.o --omf_browse .\objects\communication.crf --depend .\objects\communication.d)
+I (.\Code\inc\communication.h)(0x5C050D25)
 I (.\CMSIS\inc\stm32f10x.h)(0x5BF79F4E)
 I (.\CMSIS\inc\core_cm3.h)(0x5BF79F4E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F137E)
@@ -282,10 +282,10 @@ I (.\Freertos\inc\task.h)(0x5BF79F4E)
 I (.\Freertos\inc\list.h)(0x5BF79F4E)
 I (.\Freertos\inc\queue.h)(0x5BF79F4E)
 F (.\Code\inc\FreeRTOSConfig.h)(0x5BFD3441)()
-F (.\Code\inc\init.h)(0x5C014326)()
+F (.\Code\inc\init.h)(0x5C0510C4)()
 F (.\Code\inc\main.h)(0x5C013D73)()
 F (.\Code\inc\mcp2115.h)(0x5BFCFD81)()
-F (.\Code\inc\communication.h)(0x5C013DCF)()
+F (.\Code\inc\communication.h)(0x5C050D25)()
 F (.\STM32F10x_StdPeriph_Driver\src\stm32f10x_crc.c)(0x4D788204)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\gatewayKamaz -I .\CMSIS\inc -I .\Freertos\inc -I .\Code\inc -I .\STM32F10xFWLib\inc -I .\STM32F10x_StdPeriph_Driver\inc-I.\RTE\_main-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f10x_crc.o --omf_browse .\objects\stm32f10x_crc.crf --depend .\objects\stm32f10x_crc.d)
 I (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_crc.h)(0x4D788204)
 I (.\CMSIS\inc\stm32f10x.h)(0x5BF79F4E)

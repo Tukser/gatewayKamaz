@@ -14,13 +14,15 @@
 #define WHAIT_TO_SEND_MESSAGE_250 GPIO_SetBits(GPIOB, GPIO_Pin_12)
 
 
-unsigned char sendMessageSPI250(unsigned char command, unsigned char data);
-unsigned char sendMessageSPI500(unsigned char command, unsigned char data);
+void vTaskSendMessageUSART(void* param);
+void vTaskRecieveMessageUsart(void* param);
 
-void sendMessageUSART(unsigned char buffer);
+void vTaskSendMessageSPI250(void* param);
+void vTaskRecieveMessageSPI250(void* param);
 
-
-void USART1_IRQHandler();
+void vTaskSendMessageSPI500(void* param);
+void vTaskRecieveMessageSPI500(void* param);
+//void USART1_IRQHandler();
 
 
 
