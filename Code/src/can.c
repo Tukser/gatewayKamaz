@@ -17,7 +17,7 @@ void vTaskAddMessageCAN_EEC1(void* param){
 	identifier |= source_address; // last byte
 	
 	msg.id = identifier;
-	msg.format = STANDARD_FORMAT;
+	msg.format = EXTENDED_FORMAT;
 	msg.type = DATA_FRAME;
 	msg.len = 8;
 	
