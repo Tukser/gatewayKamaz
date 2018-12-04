@@ -1,17 +1,23 @@
 #include "main.h"
 
+#define CAN_QUEUE_LENGTH 10
 
 xQueueHandle xMessageUsart = NULL;
+xQueueHandle xMessageCAN = NULL;
 
 int main()
 {
-	xMessageUsart = xQueueCreate(1, sizeof(unsigned char)); //Queue for send data on USART
+	xMessageUsart = xQueueCreate(1, sizeof(unsigned char)); // Queue for send data on USART
+	xMessageCAN = xQueueCreate(CAN_QUEUE_LENGTH, sizeof(CAN_msg)); // Queue for send data in CAN
+	
 	TaskHandle_t xHandle;
 
 
 	xTaskCreate(vTaskInitialization, "Initialization_device", configMINIMAL_STACK_SIZE , NULL, 1, &xHandle);
 	xTaskCreate(vTaskSendMessageUSART, "Send a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, &xHandle);
 	xTaskCreate(vTaskRecieveMessageUsart, "Recieve a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, &xHandle);
+	
+	xTaskCreate(vTaskAddMessageCAN_EEC1, "Add EEC1 message to queue", configMINIMAL_STACK_SIZE, NULL, 1, &xHandle);
 	/*xRecieveUsart = xQueueCreate(1,sizeof(unsigned char)); //Queue for recieve data on USART
 	sSendSPI250 = xQueueCreate(1, sizeof(unsigned char)); //Queue for send data on SPI 250kb/s
 	sRecieveSPI250 = xQueueCreate(1, sizeof(unsigned char)); //Queue for recieve data on SPI 250kb/s

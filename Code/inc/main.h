@@ -11,6 +11,7 @@
 
 #include "init.h"
 #include "communication.h"
+#include "can.h"
 
 
 void vTaskSendMessageUSART(void* param);
