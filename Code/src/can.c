@@ -32,6 +32,9 @@ void vTaskAddMessageCAN_EEC1(void* param){
 		msg.data[2] = percent_torque;
 		msg.data[3] = engine_speed & 0xFF; 
 		msg.data[4] = (engine_speed >> 8) & 0xFF;
+		
+		xQueueSendToBack(xMessageCAN, &msg, 0);
+		
 		vTaskDelay(xDelay);
 	}
 }
