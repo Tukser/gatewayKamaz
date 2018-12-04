@@ -1,32 +1,67 @@
 #include "main.h"
 
-xQueueHandle xSendUsart = NULL;
-xQueueHandle xRecieveUsart;
-xQueueHandle sSendSPI250;
-xQueueHandle sRecieveSPI250;
-xQueueHandle sSendSPI500;
-xQueueHandle sRecieveSPI500;
 
+xQueueHandle xMessageUsart = NULL;
 
 int main()
 {
+	xMessageUsart = xQueueCreate(1, sizeof(unsigned char)); //Queue for send data on USART
+	TaskHandle_t xHandle;
 
-	xTaskCreate(vTaskInitialization, "Initialization_device", configMINIMAL_STACK_SIZE , NULL, 1, NULL);
-	xTaskCreate(vTaskSendMessageUSART, "Send a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
 
-	xSendUsart = xQueueCreate(1, sizeof(unsigned char)); //Queue for send data on USART
-	xRecieveUsart = xQueueCreate(1,sizeof(unsigned char)); //Queue for recieve data on USART
+	xTaskCreate(vTaskInitialization, "Initialization_device", configMINIMAL_STACK_SIZE , NULL, 1, &xHandle);
+	xTaskCreate(vTaskSendMessageUSART, "Send a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, &xHandle);
+	xTaskCreate(vTaskRecieveMessageUsart, "Recieve a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, &xHandle);
+	/*xRecieveUsart = xQueueCreate(1,sizeof(unsigned char)); //Queue for recieve data on USART
 	sSendSPI250 = xQueueCreate(1, sizeof(unsigned char)); //Queue for send data on SPI 250kb/s
 	sRecieveSPI250 = xQueueCreate(1, sizeof(unsigned char)); //Queue for recieve data on SPI 250kb/s
 
 	sSendSPI500 = xQueueCreate(1, sizeof(unsigned char)); //Queue for send data on SPI 250kb/s
-	sRecieveSPI500 = xQueueCreate(1, sizeof(unsigned char)); //Queue for recieve data on SPI 250kb/s
+	sRecieveSPI500 = xQueueCreate(1, sizeof(unsigned char)); //Queue for recieve data on SPI 250kb/s*/
 
 	vTaskStartScheduler();
 	while (1)
 	{
 	}
 	return 0;
+}
+
+
+void vTaskSendMessageUSART(void* param)
+{
+	unsigned char i;
+	portBASE_TYPE xStatus;
+	const portTickType xTickWait = 100;
+	
+	while(1)
+	{	
+		if (uxQueueMessagesWaiting(xMessageUsart)!=0)
+		{
+		}
+		xStatus = xQueueReceive(xMessageUsart, &i,xTickWait);
+		if (xStatus == pdPASS)
+		{
+			while (!(USART_GetFlagStatus(USART1, USART_FLAG_TXE)));
+			USART_SendData(USART1, i);		
+		}
+	}
+
+}
+
+void vTaskRecieveMessageUsart(void* param)
+{
+	unsigned char i=0;
+	portBASE_TYPE xStatus;
+	while(1)
+	{
+		i++;
+		xStatus = xQueueSendToBack(xMessageUsart, &i,0);
+		if (xStatus !=pdFALSE)
+		{
+			
+		}
+		taskYIELD();
+	}
 }
 
 /*void xTaskSendUsart(void* param)

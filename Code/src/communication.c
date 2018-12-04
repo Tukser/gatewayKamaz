@@ -1,6 +1,6 @@
 #include "communication.h"
 
-void sendMessageSPI250(void* param)
+/*void sendMessageSPI250(void* param)
 {
 	
 	WHAIT_TO_SEND_MESSAGE_250;
@@ -15,27 +15,8 @@ void sendMessageSPI250(void* param)
 	{	
 	}
 	vTaskDelete(NULL);
-}
+}*/
 
-
-void vTaskSendMessageUSART(void* param)
-{
-	while(1)
-	{	
-		if (USART_GetITStatus(USART1, USART_IT_TXE) !=RESET)
-		{
-		USART_SendData(USART1, 5);		
-		while (!(USART_GetFlagStatus(USART1, USART_FLAG_TXE)));
-		}
-	}
-}
-
-void vTaskRecieveMessageUsart(void* param)
-{
-	while(1)
-	{
-	}
-}
 
 
 

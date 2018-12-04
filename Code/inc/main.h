@@ -13,5 +13,7 @@
 #include "communication.h"
 
 
+void vTaskSendMessageUSART(void* param);
+void vTaskRecieveMessageUsart(void* param);
 
 #endif

@@ -12,6 +12,7 @@ void vTaskInitialization(void* param)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 	
+	//Indicator
 	GPIO_InitTypeDef _GpioInitIndicator;
 	
 	_GpioInitIndicator.GPIO_Mode =GPIO_Mode_Out_PP;
@@ -19,7 +20,7 @@ void vTaskInitialization(void* param)
 	_GpioInitIndicator.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_Init(GPIOC, &_GpioInitIndicator);
 	
-	//CS pin SPI
+/*	//CS pin SPI
 	GPIO_InitTypeDef _GpioCS250;
 	GPIO_InitTypeDef _GpioCS500;
 	
@@ -77,17 +78,9 @@ void vTaskInitialization(void* param)
 	_GpioInitSPI500.SPI_Mode = SPI_Mode_Master;
 	_GpioInitSPI500.SPI_NSS = SPI_NSS_Soft;
 	SPI_Init(SPI1, &_GpioInitSPI500);
-	SPI_Cmd(SPI2, ENABLE);
+	SPI_Cmd(SPI2, ENABLE);*/
 	
-	//USART
-	NVIC_InitTypeDef _NVICStruct;
-	_NVICStruct.NVIC_IRQChannel = USART1_IRQn;
-	_NVICStruct.NVIC_IRQChannelPreemptionPriority = 0;
-	_NVICStruct.NVIC_IRQChannelSubPriority = 0;
-	_NVICStruct.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&_NVICStruct);
-	
-	
+	///USART	
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
 	GPIO_InitTypeDef _GpioPinForUSART;
 	USART_InitTypeDef _GpioInitUSART;
@@ -111,10 +104,19 @@ void vTaskInitialization(void* param)
 	
 	USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
 	USART_Cmd(USART1, ENABLE);
-	NVIC_EnableIRQ(USART1_IRQn);
+	
+	//Test
+	GPIO_ResetBits(GPIOC, GPIO_Pin_7);
+	vTaskDelay(1000);
+	GPIO_SetBits(GPIOC, GPIO_Pin_7);
+	vTaskDelay(1000);
+	GPIO_ResetBits(GPIOC, GPIO_Pin_7);
+	vTaskDelay(1000);
+	GPIO_SetBits(GPIOC, GPIO_Pin_7);
+	
 	while(1)
 	{
-		
+
 	}
 	vTaskDelete(NULL);
 }
