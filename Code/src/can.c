@@ -90,7 +90,7 @@ void vTaskAddMessageCAN_XBR(void* param){
 					xbr_control_mode = 0; // override disabled
 					t = 0;
 				} else {
-					t = (t+1)%20;
+					t = (t+1)%10;
 					xbr_priority = 0; // highest priority
 					ebi_mode = 1; // only endurance brake allowed;
 					xbr_control_mode = 2; // acceleration control with maximum mode
@@ -102,9 +102,9 @@ void vTaskAddMessageCAN_XBR(void* param){
 					counter = (counter + 1) % 16;
 					accel_demand_buffer = (int)((xbr_accel_demand + 15.687)	/ 0.00048828125);
 					
-					msg.data[0] = accel_demand_buffer >> 8; 
-					msg.data[1] = accel_demand_buffer & 0xFF;
-					msg.data[2] = ebi_mode<<6 | xbr_priority<<4 | xbr_control_mode<<2 | 0b11;
+					msg.data[0] = accel_demand_buffer & 0xFF;
+					msg.data[1] = accel_demand_buffer >> 8; 
+					msg.data[2] = ebi_mode | xbr_priority<<2 | xbr_control_mode<<4 | 0b11 << 6;
 					msg.data[3] = 0xFF; // urgency
 					msg.data[4] = 0xFF; // not used
 					msg.data[5] = 0xFF; // not used
@@ -117,7 +117,7 @@ void vTaskAddMessageCAN_XBR(void* param){
 					checksum += (identifier & 0xFF) + ((identifier >> 8) & 0xFF) + ((identifier >> 16) & 0xFF) + ((identifier >> 24) & 0xFF);
 					checksum = ((checksum >> 4) + checksum) & 0x0F;
 					
-					msg.data[7] = (counter << 4) | checksum;
+					msg.data[7] = (checksum  << 4) | counter;
 					
 					xQueueSendToBack(xMessageCAN, &msg, 0);
 				}
