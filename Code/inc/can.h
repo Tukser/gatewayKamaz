@@ -20,6 +20,6 @@ typedef struct  {
   unsigned char  type;               // 0 - DATA FRAME, 1 - REMOTE FRAME
 } CAN_msg;
 
-void vTaskAddMessageCAN_EEC1(void* params);
+void vTaskAddMessageCAN_EEC2(void* params);
 
 #endif // _CAN_H_
