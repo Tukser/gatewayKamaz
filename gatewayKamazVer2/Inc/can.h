@@ -11,6 +11,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
+#include "CANSPI.h"
 
 typedef struct  {
   unsigned int   id;                 // 29 bit identifier

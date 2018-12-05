@@ -63,9 +63,6 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-xQueueHandle xMessageCAN = NULL;
-unsigned char accel_pedal = 0;
-float xbr_accel_demand = 0.0;
 
 /* USER CODE END PV */
 

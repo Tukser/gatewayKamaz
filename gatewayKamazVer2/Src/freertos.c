@@ -51,6 +51,8 @@
 #include "task.h"
 #include "cmsis_os.h"
 #include "usart.h"
+#include "CANSPI.h"
+#include "can.h"
 
 /* USER CODE BEGIN Includes */     
 
@@ -63,6 +65,10 @@ osThreadId defaultTaskHandle;
 
 osThreadId xHandle;
 xQueueHandle xMessageUsart;
+xQueueHandle xMessageCAN = NULL;
+
+unsigned char accel_pedal = 0;
+float xbr_accel_demand = 0.0;
 /* USER CODE END Variables */
 
 /* Function prototypes -------------------------------------------------------*/
@@ -111,11 +117,16 @@ void MX_FREERTOS_Init(void) {
   /* add threads, ... */
 	xTaskCreate(vTaskSendMessageUSART, "Send a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, &xHandle);
 	xTaskCreate(vTaskRecieveMessageUsart, "Recieve a message to USART", configMINIMAL_STACK_SIZE, NULL, 0, &xHandle);
-  /* USER CODE END RTOS_THREADS */
+	xTaskCreate(vTaskRecieveMessageSPI1, "Send a message to SPI 1", configMINIMAL_STACK_SIZE, NULL, 0, &xHandle);
+ 	xTaskCreate(vTaskAddMessageCAN_EEC2, "Send EEC2 message to CAN", configMINIMAL_STACK_SIZE, NULL, 0, &xHandle);
+
+ 
+ /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
 	 xMessageUsart = xQueueCreate(9, sizeof(unsigned char)); //Queue for send data on USART
+	 xMessageCAN = xQueueCreate(9, sizeof(uCAN_MSG)); //Queue for send data on USART
   /* USER CODE END RTOS_QUEUES */
 }
 
@@ -149,7 +160,7 @@ void StartDefaultTask(void const * argument)
 		{
 			HAL_UART_Transmit(&huart1, &incommingData, 1, 500);
 		}
-
+		taskYIELD();
 	}
 	
 }
@@ -172,9 +183,18 @@ void vTaskRecieveMessageUsart(void* param)
 
 void vTaskSendMessageSPI1(void* param)
 {
+	uCAN_MSG incomingData;
+	portBASE_TYPE xStatus;
+	const portTickType xTickWait = 100;
 	
-	while(1)
-	{
+	for(;;)
+	{	
+		xStatus = xQueueReceive(xMessageCAN, &incomingData, xTickWait);
+		if (xStatus == pdPASS)
+		{
+			CANSPI_Transmit(&incomingData);
+		}
+		taskYIELD();
 	}
 }
 
