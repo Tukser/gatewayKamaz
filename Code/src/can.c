@@ -4,12 +4,12 @@ extern xQueueHandle xMessageCAN;
 
 CAN_msg msg;
 
-void vTaskAddMessageCAN_EEC1(void* param){
-	const TickType_t xDelay = 20 / portTICK_PERIOD_MS; // repetition rate for EEC1 is 20ms
+void vTaskAddMessageCAN_EEC2(void* param){
+	const TickType_t xDelay = 50 / portTICK_PERIOD_MS; // repetition rate for EEC1 is 20ms
 	
-	unsigned char source_address = 204; // TODO ASSIGN REAL SOURCE ADDRESS
+	unsigned char source_address = 0x27;
 	unsigned char priority = 3;
-	unsigned int PGN = 0x00F004;
+	unsigned int PGN = 0x00F003;
 	
 	unsigned int identifier;
 	identifier |= priority << 5; // top 3 bits
@@ -21,17 +21,33 @@ void vTaskAddMessageCAN_EEC1(void* param){
 	msg.type = DATA_FRAME;
 	msg.len = 8;
 	
-	for (int i = 0; i < 8; i++) {
-		msg.data[i] = 0;
+	for (int i = 3; i < 8; i++) {
+		msg.data[i] = 0xFF;
 	}
 	
-	unsigned char percent_torque = 0;
-	unsigned int engine_speed = 0;
+	unsigned char kickdown_switch; 
+	unsigned char low_idle;
+	char accel_pedal;
 	
 	for(;;){
-		msg.data[2] = percent_torque;
-		msg.data[3] = engine_speed & 0xFF; 
-		msg.data[4] = (engine_speed >> 8) & 0xFF;
+		
+		if (accel_pedal > 97) {
+			kickdown_switch = 1;
+		} else {
+			kickdown_switch = 0;
+		}
+		
+		if (accel_pedal < 13) {
+			low_idle = 1;
+		} else {
+			low_idle = 0;
+		}
+		
+		msg.data[0] = 0xF0;
+		msg.data[0] |= low_idle;
+		msg.data[0] |= kickdown_switch << 2;
+		
+		msg.data[1] = (accel_pedal / 0.4);
 		
 		xQueueSendToBack(xMessageCAN, &msg, 0);
 		
