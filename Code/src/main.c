@@ -5,6 +5,9 @@
 xQueueHandle xMessageUsart = NULL;
 xQueueHandle xMessageCAN = NULL;
 
+unsigned char accel_pedal = 0;
+float xbr_accel_demand = 0.0;
+
 int main()
 {
 	xMessageUsart = xQueueCreate(1, sizeof(unsigned char)); // Queue for send data on USART
@@ -18,6 +21,8 @@ int main()
 	xTaskCreate(vTaskRecieveMessageUsart, "Recieve a message to USART", configMINIMAL_STACK_SIZE, NULL, 1, &xHandle);
 	
 	xTaskCreate(vTaskAddMessageCAN_EEC2, "Add EEC1 message to queue", configMINIMAL_STACK_SIZE, NULL, 1, &xHandle);
+	xTaskCreate(vTaskAddMessageCAN_XBR, "Add XBR message to queue", configMINIMAL_STACK_SIZE, NULL, 1, &xHandle);
+
 	/*xRecieveUsart = xQueueCreate(1,sizeof(unsigned char)); //Queue for recieve data on USART
 	sSendSPI250 = xQueueCreate(1, sizeof(unsigned char)); //Queue for send data on SPI 250kb/s
 	sRecieveSPI250 = xQueueCreate(1, sizeof(unsigned char)); //Queue for recieve data on SPI 250kb/s

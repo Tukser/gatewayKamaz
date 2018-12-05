@@ -21,5 +21,8 @@ typedef struct  {
 } CAN_msg;
 
 void vTaskAddMessageCAN_EEC2(void* params);
+void vTaskAddMessageCAN_XBR(void* params);
+void vTaskAddMessageCAN_TC1(void* params);
+
 
 #endif // _CAN_H_
