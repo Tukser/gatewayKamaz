@@ -18,15 +18,15 @@ void vTaskAddMessageCAN_EEC2(void* param){
 	identifier |= PGN << 8; // R + DP + PF + PS, 18 bits in the middle
 	identifier |= source_address; // last byte
 	
-	msg.id = identifier;
-	msg.idType = dEXTENDED_CAN_MSG_ID_2_0B;
-	msg.dlc = 8;
+	msg.frame.id = identifier;
+	msg.frame.idType = dEXTENDED_CAN_MSG_ID_2_0B;
+	msg.frame.dlc = 8;
 	
-	msg.data3 = 0xFF;
-	msg.data4 = 0xFF;
-	msg.data5 = 0xFF;
-	msg.data6 = 0xFF;
-	msg.data7 = 0xFF;
+	msg.frame.data3 = 0xFF;
+	msg.frame.data4 = 0xFF;
+	msg.frame.data5 = 0xFF;
+	msg.frame.data6 = 0xFF;
+	msg.frame.data7 = 0xFF;
 	
 	unsigned char kickdown_switch; 
 	unsigned char low_idle;
@@ -45,11 +45,11 @@ void vTaskAddMessageCAN_EEC2(void* param){
 			low_idle = 0;
 		}
 		
-		msg.data0 = 0xF0;
-		msg.data0 |= low_idle;
-		msg.data0 |= kickdown_switch << 2;
+		msg.frame.data0 = 0xF0;
+		msg.frame.data0 |= low_idle;
+		msg.frame.data0 |= kickdown_switch << 2;
 		
-		msg.data1 = (accel_pedal / 0.4);
+		msg.frame.data1 = (accel_pedal / 0.4);
 		
 		xQueueSendToBack(xMessageCAN, &msg, 0);
 		
@@ -79,9 +79,9 @@ void vTaskAddMessageCAN_XBR(void* param){
 		identifier |= PGN << 8; // R + DP + PF + PS, 18 bits in the middle
 		identifier |= source_address; // last byte
 	
-		msg.id = identifier;
-		msg.idType = dEXTENDED_CAN_MSG_ID_2_0B;
-		msg.dlc = 8;
+		msg.frame.id = identifier;
+		msg.frame.idType = dEXTENDED_CAN_MSG_ID_2_0B;
+		msg.frame.dlc = 8;
 		int t = 0;
 		for (;;) {
 				if (xbr_accel_demand < -0.001) {
@@ -102,20 +102,20 @@ void vTaskAddMessageCAN_XBR(void* param){
 					counter = (counter + 1) % 16;
 					accel_demand_buffer = (int)((xbr_accel_demand + 15.687)	/ 0.00048828125);
 					
-					msg.data0 = accel_demand_buffer & 0xFF;
-					msg.data1 = accel_demand_buffer >> 8; 
-					msg.data2 = ebi_mode | xbr_priority<<2 | xbr_control_mode<<4 | 0xC0;
-					msg.data3 = 0xFF; // urgency
-					msg.data4 = 0xFF; // not used
-					msg.data5 = 0xFF; // not used
-					msg.data6 = 0xFF; // not used
+					msg.frame.data0 = accel_demand_buffer & 0xFF;
+					msg.frame.data1 = accel_demand_buffer >> 8; 
+					msg.frame.data2 = ebi_mode | xbr_priority<<2 | xbr_control_mode<<4 | 0xC0;
+					msg.frame.data3 = 0xFF; // urgency
+					msg.frame.data4 = 0xFF; // not used
+					msg.frame.data5 = 0xFF; // not used
+					msg.frame.data6 = 0xFF; // not used
 					
-					checksum = counter & 0x0F + msg.data0 + msg.data1 + msg.data2 + msg.data3 + msg.data4 msg.data5 + msg.data6;
+					checksum = counter & 0x0F + msg.frame.data0 + msg.frame.data1 + msg.frame.data2 + msg.frame.data3 + msg.frame.data4 +msg.frame.data5 + msg.frame.data6;
 
 					checksum += (identifier & 0xFF) + ((identifier >> 8) & 0xFF) + ((identifier >> 16) & 0xFF) + ((identifier >> 24) & 0xFF);
 					checksum = ((checksum >> 4) + checksum) & 0x0F;
 					
-					msg.data7 = (checksum  << 4) | counter;
+					msg.frame.data7 = (checksum  << 4) | counter;
 					
 					xQueueSendToBack(xMessageCAN, &msg, 0);
 				}

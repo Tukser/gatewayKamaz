@@ -106,8 +106,9 @@ int main(void)
   MX_USART1_UART_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
-	CANSPI_Initialize();
-
+	
+	if (CANSPI_Initialize())
+		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_7, GPIO_PIN_SET);
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

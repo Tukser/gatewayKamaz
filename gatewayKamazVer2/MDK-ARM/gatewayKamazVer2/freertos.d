@@ -41,3 +41,6 @@ gatewaykamazver2\freertos.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_f
 gatewaykamazver2\freertos.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 gatewaykamazver2\freertos.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
 gatewaykamazver2\freertos.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
+gatewaykamazver2\freertos.o: ../Inc/CANSPI.h
+gatewaykamazver2\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+gatewaykamazver2\freertos.o: ../Inc/can.h
