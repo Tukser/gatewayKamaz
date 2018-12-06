@@ -14,7 +14,7 @@ void vTaskAddMessageCAN_EEC2(void* param){
 	unsigned int PGN = 0x00F003;
 	
 	unsigned int identifier;
-	identifier |= priority << 5; // top 3 bits
+	identifier |= priority << 26; // top 3 bits
 	identifier |= PGN << 8; // R + DP + PF + PS, 18 bits in the middle
 	identifier |= source_address; // last byte
 	
@@ -75,7 +75,7 @@ void vTaskAddMessageCAN_XBR(void* param){
 		unsigned int PGN = 0x00040B;
 	
 		unsigned int identifier;
-		identifier |= priority << 5; // top 3 bits
+		identifier |= priority << 26; // top 3 bits
 		identifier |= PGN << 8; // R + DP + PF + PS, 18 bits in the middle
 		identifier |= source_address; // last byte
 	
@@ -85,39 +85,47 @@ void vTaskAddMessageCAN_XBR(void* param){
 		int t = 0;
 		for (;;) {
 				if (xbr_accel_demand < -0.001) {
-					xbr_priority = 3; // low priority
-					ebi_mode = 0; // no endurance brake integration allowed
-					xbr_control_mode = 0; // override disabled
-					t = 0;
+						xbr_priority = 0; // highest priority
+						ebi_mode = 2; // only endurance brake allowed;
+						xbr_control_mode = 1; // acceleration control with maximum mode
+
+						accel_demand_buffer = (int) ((xbr_accel_demand + 15.687) / 0.00048828125);
+						msg.frame.data0 = accel_demand_buffer & 0xFF;
+						msg.frame.data1 = accel_demand_buffer >> 8;
+
+						t = 0;
 				} else {
-					t = (t+1)%10;
-					xbr_priority = 0; // highest priority
-					ebi_mode = 1; // only endurance brake allowed;
-					xbr_control_mode = 2; // acceleration control with maximum mode
+						t = (t + 1) % 10;
+
+						xbr_priority = 3; // low priority
+						ebi_mode = 0; // no endurance brake integration allowed
+						xbr_control_mode = 0; // override disabled
+
+						msg.frame.data0 = 0xFF;
+						msg.frame.data1 = 0xFF;
 				}
 			
 				
-				if(t == 0)
-				{
-					counter = (counter + 1) % 16;
-					accel_demand_buffer = (int)((xbr_accel_demand + 15.687)	/ 0.00048828125);
-					
-					msg.frame.data0 = accel_demand_buffer & 0xFF;
-					msg.frame.data1 = accel_demand_buffer >> 8; 
-					msg.frame.data2 = ebi_mode | xbr_priority<<2 | xbr_control_mode<<4 | 0xC0;
-					msg.frame.data3 = 0xFF; // urgency
-					msg.frame.data4 = 0xFF; // not used
-					msg.frame.data5 = 0xFF; // not used
-					msg.frame.data6 = 0xFF; // not used
-					
-					checksum = counter & 0x0F + msg.frame.data0 + msg.frame.data1 + msg.frame.data2 + msg.frame.data3 + msg.frame.data4 +msg.frame.data5 + msg.frame.data6;
+				if (t == 0) {
+						counter = (counter + 1) % 16;
+						msg.frame.data2 = ebi_mode | xbr_priority << 2 | xbr_control_mode << 4 | 0xC0;
+						msg.frame.data3 = 0xFF; // urgency
+						msg.frame.data4 = 0xFF; // not used
+						msg.frame.data5 = 0xFF; // not used
+						msg.frame.data6 = 0xFF; // not used
 
-					checksum += (identifier & 0xFF) + ((identifier >> 8) & 0xFF) + ((identifier >> 16) & 0xFF) + ((identifier >> 24) & 0xFF);
-					checksum = ((checksum >> 4) + checksum) & 0x0F;
-					
-					msg.frame.data7 = (checksum  << 4) | counter;
-					
-					xQueueSendToBack(xMessageCAN, &msg, 0);
+						checksum = (counter &
+											 0x0F) + msg.frame.data0 + msg.frame.data1 + msg.frame.data2 + msg.frame.data3 + msg.frame.data4 +
+											 msg.frame.data5 + msg.frame.data6;
+						checksum += (identifier & 0xFF) + ((identifier >> 8) & 0xFF) + ((identifier >> 16) & 0xFF) +
+												((identifier >> 24) & 0xFF);
+
+						checksum = ((checksum >> 4) + checksum) & 0x0F;
+
+						msg.frame.data7 = (checksum << 4) | counter;
+
+						xQueueSendToBack(xMessageCAN, &msg, 0);
+
 				}
 				vTaskDelay(xDelay);
 		}
