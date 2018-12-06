@@ -50,6 +50,8 @@ void vTaskAddMessageCAN_EEC2(void* param){
 		msg.frame.data0 |= kickdown_switch << 2;
 		
 		msg.frame.data1 = (accel_pedal / 0.4);
+		msg.frame.data2 = 0; // TODO Engine Percent Load At Current Speed 
+		
 		
 		xQueueSendToBack(xMessageCAN, &msg, 0);
 		
