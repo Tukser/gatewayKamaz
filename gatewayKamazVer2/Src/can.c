@@ -3,6 +3,7 @@
 extern xQueueHandle xMessageCAN;
 extern unsigned char accel_pedal;
 extern float xbr_accel_demand;
+extern char tc_gear;
 
 void vTaskAddMessageCAN_EEC2(void* param){
 	const TickType_t xDelay = 50 / portTICK_PERIOD_MS; // repetition rate for EEC2 is 50ms
@@ -51,7 +52,6 @@ void vTaskAddMessageCAN_EEC2(void* param){
 		
 		msg.frame.data1 = (accel_pedal / 0.4);
 		msg.frame.data2 = 0; // TODO Engine Percent Load At Current Speed 
-		
 		
 		xQueueSendToBack(xMessageCAN, &msg, 0);
 		
@@ -130,5 +130,73 @@ void vTaskAddMessageCAN_XBR(void* param){
 
 				}
 				vTaskDelay(xDelay);
+		}
+}
+
+void vTaskAddMessageCAN_TC1(void* param){
+		const TickType_t xDelay = 20 / portTICK_PERIOD_MS; // repetition rate for XBR is 20ms (200 when no action)
+	
+		unsigned char counter = 0;
+		int i;
+	
+		uCAN_MSG msg;
+	
+    unsigned char source_address = 0x05;
+    unsigned char priority = 3;
+    unsigned int checksum;
+    unsigned int PGN = 0x000103;
+	
+		char tc_old_gear = 'N';
+		int tc_change_counter = 2;
+	
+		unsigned int identifier;
+		identifier |= priority << 26; // top 3 bits
+		identifier |= PGN << 8; // R + DP + PF + PS, 18 bits in the middle
+		identifier |= source_address; // last byte
+	
+		msg.frame.id = identifier;
+		msg.frame.idType = dEXTENDED_CAN_MSG_ID_2_0B;
+		msg.frame.dlc = 8;
+		
+		for (;;) {
+			if(tc_gear != tc_old_gear)
+			{
+				tc_old_gear = tc_gear;
+				tc_change_counter = 2;
+			}				
+			counter = (counter + 1) % 8;
+		
+			msg.frame.data0 = 0xFF; // not used
+			msg.frame.data1 = 0xFF; // not used
+		
+			if (tc_change_counter > 0) {
+				tc_change_counter--;
+				if(tc_old_gear == 'D')
+					msg.frame.data2 = 0xFC;
+				if(tc_old_gear == 'R')
+					msg.frame.data2 = 0xDF;
+				if(tc_old_gear == 'N')
+					msg.frame.data2 = 0xDE;
+			}else{
+				msg.frame.data2 = 0xE0;
+			}
+			msg.frame.data3 = 0xFF; // not used
+			msg.frame.data4 = 0xFF; // not used
+			msg.frame.data5 = 0xFF; // not used
+			msg.frame.data6 = 0xFF; // not used
+
+			checksum = (counter &
+								 0x0F) + msg.frame.data0 + msg.frame.data1 + msg.frame.data2 + msg.frame.data3 + msg.frame.data4 +
+								 msg.frame.data5 + msg.frame.data6;
+			checksum += (identifier & 0xFF) + ((identifier >> 8) & 0xFF) + ((identifier >> 16) & 0xFF) +
+									((identifier >> 24) & 0xFF);
+
+			checksum = (((checksum >> 6) & 0x03) + (checksum >>3) +  checksum) & 0x07;
+
+			msg.frame.data7 = (checksum << 4) | counter;
+
+			xQueueSendToBack(xMessageCAN, &msg, 0);
+
+			vTaskDelay(xDelay);
 		}
 }

@@ -69,6 +69,8 @@ xQueueHandle xMessageCAN = NULL;
 
 unsigned char accel_pedal = 0;
 float xbr_accel_demand = 0.0;
+char tc_gear = 'N'; // current transmission gear
+
 /* USER CODE END Variables */
 
 /* Function prototypes -------------------------------------------------------*/
@@ -119,6 +121,8 @@ void MX_FREERTOS_Init(void) {
 	xTaskCreate(vTaskRecieveMessageUsart, "Recieve a message to USART", configMINIMAL_STACK_SIZE, NULL, 0, &xHandle);
 	xTaskCreate(vTaskRecieveMessageSPI1, "Send a message to SPI 1", configMINIMAL_STACK_SIZE, NULL, 0, &xHandle);
  	xTaskCreate(vTaskAddMessageCAN_EEC2, "Send EEC2 message to CAN", configMINIMAL_STACK_SIZE, NULL, 0, &xHandle);
+ 	xTaskCreate(vTaskAddMessageCAN_XBR, "Send XBR message to CAN", configMINIMAL_STACK_SIZE, NULL, 0, &xHandle);
+ 	xTaskCreate(vTaskAddMessageCAN_TC1, "Send TC1 message to CAN", configMINIMAL_STACK_SIZE, NULL, 0, &xHandle);
 
  
  /* USER CODE END RTOS_THREADS */
