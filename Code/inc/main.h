@@ -11,9 +11,14 @@
 
 #include "init.h"
 #include "communication.h"
+#include "CANSPI.h"
+/*#include "can.h"*/
+#include "MCP2515.h"
 
+xQueueHandle xMessageUsartTest = NULL;
+TaskHandle_t xHandle;
+xQueueHandle xMessageCanTest = NULL;
 
-void vTaskSendMessageUSART(void* param);
-void vTaskRecieveMessageUsart(void* param);
-
+unsigned char accel_pedal = 0;
+float xbr_accel_demand = 0.0;
 #endif

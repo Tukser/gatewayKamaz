@@ -8,6 +8,8 @@
 #include "task.h"
 #include "stm32f10x_spi.h"
 #include "stm32f10x_usart.h"
+#include "communication.h"
+#include "stdbool.h"
 
 //----------------------------------------------------------------------------------------------------
 
@@ -18,7 +20,14 @@
 //#define UBAUDRATE 19200
 //#define UBAUDRATE 115200
 
-void vTaskInitialization(void* param);
+void vTaskInitializationRCC(void* param);
+void vTaskInitializationUsart(void* param);
+void vTaskInitializationSPI1(void* param);
+void vTaskInitializationSPI2(void* param);
+void vTaskCANMCPinit(void* param);
+
+
+bool testUsartReady(void);
 
 
 #endif

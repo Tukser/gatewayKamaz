@@ -43,3 +43,7 @@
 .\objects\main.o: .\Freertos\inc\queue.h
 .\objects\main.o: .\Code\inc\init.h
 .\objects\main.o: .\Code\inc\communication.h
+.\objects\main.o: .\Code\inc\CANSPI.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\main.o: .\Code\inc\can.h
+.\objects\main.o: .\Code\inc\MCP2515.h

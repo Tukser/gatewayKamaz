@@ -39,3 +39,8 @@
 .\objects\init.o: .\Freertos\inc\mpu_wrappers.h
 .\objects\init.o: .\Freertos\inc\task.h
 .\objects\init.o: .\Freertos\inc\list.h
+.\objects\init.o: .\Code\inc\communication.h
+.\objects\init.o: .\Freertos\inc\queue.h
+.\objects\init.o: .\Code\inc\CANSPI.h
+.\objects\init.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\init.o: .\Code\inc\can.h

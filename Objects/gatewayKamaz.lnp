@@ -14,6 +14,8 @@
 ".\objects\main.o"
 ".\objects\init.o"
 ".\objects\communication.o"
+".\objects\canspi.o"
+".\objects\mcp2515.o"
 ".\objects\stm32f10x_crc.o"
 ".\objects\stm32f10x_gpio.o"
 ".\objects\stm32f10x_i2c.o"

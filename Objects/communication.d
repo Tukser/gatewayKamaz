@@ -40,3 +40,6 @@
 .\objects\communication.o: .\Freertos\inc\task.h
 .\objects\communication.o: .\Freertos\inc\list.h
 .\objects\communication.o: .\Freertos\inc\queue.h
+.\objects\communication.o: .\Code\inc\CANSPI.h
+.\objects\communication.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\communication.o: .\Code\inc\can.h
